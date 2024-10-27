@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Edison Android Exercise</string>
+    <string name="no_fact_found_error">Facts not found</string>
 </resources>
