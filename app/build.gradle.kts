@@ -4,7 +4,6 @@ plugins {
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
     alias(libs.plugins.compose.compiler)
-    kotlin("plugin.serialization").version("1.9.0")
 }
 
 android {
@@ -83,4 +82,9 @@ dependencies {
 
     //Testing
     testImplementation(libs.junit)
+    testImplementation(libs.mockk)
+
+    // Internal libs
+    implementation(project(":network:retrofit"))
+    implementation(project(":usecase"))
 }

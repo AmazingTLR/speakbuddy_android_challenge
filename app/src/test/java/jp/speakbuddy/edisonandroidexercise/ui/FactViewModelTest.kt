@@ -1,11 +1,12 @@
 package jp.speakbuddy.edisonandroidexercise.ui
 
-import jp.speakbuddy.edisonandroidexercise.ui.fact.FactViewModel
+import com.amazingtlr.usecase.fact.FactUseCase
+import io.mockk.mockk
 import org.junit.Test
 
 class FactViewModelTest {
-
-    private val viewModel = FactViewModel()
+    private val factUseCase: FactUseCase = mockk(relaxed = true)
+    private val viewModel = FactViewModel(factUseCase)
 
     @Test
     fun updateFact() {
