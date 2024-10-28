@@ -1,6 +1,7 @@
 package jp.speakbuddy.edisonandroidexercise.di
 
 import com.amazingtlr.api.FactRepository
+import com.amazingtlr.api.LocalFactRepository
 import com.amazingtlr.usecase.fact.FactListUseCase
 import com.amazingtlr.usecase.fact.FactUseCase
 import dagger.Module
@@ -20,7 +21,13 @@ class UseCaseModule {
 
     @Provides
     @Singleton
-    fun provideFactListUseCase(factRepository: FactRepository): FactListUseCase {
-        return FactListUseCase(factRepository)
+    fun provideFactListUseCase(
+        factRepository: FactRepository,
+        localFactRepository: LocalFactRepository
+    ): FactListUseCase {
+        return FactListUseCase(
+            factRepository = factRepository,
+            localFactRepository = localFactRepository
+        )
     }
 }

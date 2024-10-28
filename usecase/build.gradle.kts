@@ -9,6 +9,7 @@ java {
 }
 dependencies {
     implementation(project(":network:api"))
+    implementation(project(":storage:api"))
 
     // Coroutines
     implementation(libs.kotlinx.coroutines.core)
@@ -16,4 +17,6 @@ dependencies {
     // Testing
     testImplementation(libs.junit)
     testImplementation(libs.mockk)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.turbine)
 }

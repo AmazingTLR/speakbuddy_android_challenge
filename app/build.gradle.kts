@@ -68,6 +68,11 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.kotlinx.serialization.json)
 
+    // Room
+    implementation(libs.room.runtime)
+    ksp(libs.room.compiler)
+    implementation(libs.room.ktx)
+
     //Hilt
     ksp(libs.hilt.android.compiler)
     implementation(libs.hilt.android)
@@ -87,4 +92,5 @@ dependencies {
     // Internal libs
     implementation(project(":network:retrofit"))
     implementation(project(":usecase"))
+    implementation(project(":storage:room"))
 }
