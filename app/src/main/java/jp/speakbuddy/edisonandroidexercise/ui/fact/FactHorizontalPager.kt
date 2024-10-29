@@ -4,6 +4,7 @@ import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
@@ -26,6 +27,7 @@ fun FactHorizontalPager(
     factList: List<FactUI>,
     onRequestForNextPage: () -> Unit,
     hasMore: Boolean,
+    onFactSeen: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val pagerState = rememberPagerState(pageCount = {
@@ -42,6 +44,8 @@ fun FactHorizontalPager(
         }
 
         randomColor = colorList.random()
+
+        onFactSeen(factList[pagerState.currentPage].id)
     }
 
 
@@ -66,12 +70,13 @@ fun FactHorizontalPager(
 fun FactHorizontalPagerPreview() {
     FactHorizontalPager(
         factList = listOf(
-            FactUI(fact = "Fact 1", length = 6, shouldDisplayLength = false, multipleCats = false),
-            FactUI(fact = "Fact 2", length = 6, shouldDisplayLength = true, multipleCats = false),
-            FactUI(fact = "Fact 3", length = 6, shouldDisplayLength = false, multipleCats = true),
-            FactUI(fact = "Fact 4", length = 6, shouldDisplayLength = true, multipleCats = true),
+            FactUI("1", fact = "Fact 1", length = 6, shouldDisplayLength = false, multipleCats = false),
+            FactUI("2",fact = "Fact 2", length = 6, shouldDisplayLength = true, multipleCats = false),
+            FactUI("3",fact = "Fact 3", length = 6, shouldDisplayLength = false, multipleCats = true),
+            FactUI("4",fact = "Fact 4", length = 6, shouldDisplayLength = true, multipleCats = true),
         ),
         onRequestForNextPage = {},
-        hasMore = true
+        hasMore = true,
+        onFactSeen = {}
     )
 }

@@ -23,7 +23,7 @@ class RoomLocalFactRepositoryTest {
 
     @Test
     fun `When repository is inserting facts, factDao is called`() = runTest {
-        val facts = listOf(LocalFactResponse(fact = "Fact 1", length = 10))
+        val facts = listOf(LocalFactResponse(id = "1", fact = "Fact 1", length = 10))
 
         sut.insertAll(facts)
 
@@ -38,6 +38,26 @@ class RoomLocalFactRepositoryTest {
 
         coVerify(exactly = 1) {
             mockFactDao.clearAll()
+        }
+    }
+
+    @Test
+    fun `When marking fact as seen, factDao is called`() = runTest {
+        val factId = "factId"
+
+        sut.markFactAsSeen(factId)
+
+        coVerify(exactly = 1) {
+            mockFactDao.markFactAsSeen(factId)
+        }
+    }
+
+    @Test
+    fun `When repository is observing seen facts, factDao is called`() {
+        sut.observeSeenFacts()
+
+        verify(exactly = 1) {
+            mockFactDao.getAllSeenFacts()
         }
     }
 }

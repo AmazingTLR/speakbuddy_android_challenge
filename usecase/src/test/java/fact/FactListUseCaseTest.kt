@@ -97,8 +97,8 @@ class FactListUseCaseTest {
         )
 
         private val fakeLocalFactResponseList = listOf(
-            LocalFactResponse("A local fact", 6),
-            LocalFactResponse("Another local fact", 12)
+            LocalFactResponse("1","A local fact", 6),
+            LocalFactResponse("2", "Another local fact", 12)
         )
     }
 }

@@ -2,8 +2,11 @@ package jp.speakbuddy.edisonandroidexercise.di
 
 import com.amazingtlr.api.FactRepository
 import com.amazingtlr.api.LocalFactRepository
+import com.amazingtlr.usecase.fact.ClearFactListUseCase
 import com.amazingtlr.usecase.fact.FactListUseCase
 import com.amazingtlr.usecase.fact.FactUseCase
+import com.amazingtlr.usecase.fact.MarkFactAsSeenUseCase
+import com.amazingtlr.usecase.fact.HistoryFactListUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,5 +32,23 @@ class UseCaseModule {
             factRepository = factRepository,
             localFactRepository = localFactRepository
         )
+    }
+
+    @Provides
+    @Singleton
+    fun provideClearFactListUseCase(localFactRepository: LocalFactRepository): ClearFactListUseCase {
+        return ClearFactListUseCase(localFactRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideMarkFactAsSeenUseCase(localFactRepository: LocalFactRepository): MarkFactAsSeenUseCase {
+        return MarkFactAsSeenUseCase(localFactRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSeenFactListUseCase(localFactRepository: LocalFactRepository): HistoryFactListUseCase {
+        return HistoryFactListUseCase(localFactRepository)
     }
 }

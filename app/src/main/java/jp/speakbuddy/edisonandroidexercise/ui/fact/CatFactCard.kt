@@ -59,18 +59,18 @@ fun CatCardFact(
             DynamicTextField(
                 shouldDisplayText = fact.multipleCats,
                 text = stringResource(R.string.multiple_cat_message),
-                style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold),
+                style = MaterialTheme.typography.bodyMedium,
             )
 
             Text(
                 text = fact.fact,
-                style = MaterialTheme.typography.bodyMedium
+                style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
             )
 
             DynamicTextField(
                 shouldDisplayText = fact.shouldDisplayLength,
                 text = stringResource(id = R.string.length_title, fact.length),
-                style = MaterialTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold),
+                style = MaterialTheme.typography.bodyMedium,
                 modifier = modifier.align(Alignment.End)
             )
         }
@@ -82,6 +82,7 @@ fun CatCardFact(
 fun CatFactCardPreview() {
     CatCardFact(
         factUI = FactUI(
+            id = "1",
             fact = "Cats are cute",
             length = 110,
             multipleCats = true,

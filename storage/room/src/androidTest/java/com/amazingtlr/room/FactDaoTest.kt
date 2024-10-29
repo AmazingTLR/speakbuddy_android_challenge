@@ -38,7 +38,7 @@ class FactDaoTest {
 
     @Test
     fun testFactInsertion() = runTest {
-        val fact = FactEntity(id = "1", fact = "Fact 1", length = 10)
+        val fact = FactEntity(id = "1", fact = "Fact 1", length = 10, seen = 0)
         factDao.insertAll(listOf(fact))
 
         val item = factDao.getAllFacts().first()
@@ -53,7 +53,7 @@ class FactDaoTest {
 
     @Test
     fun testFactClear() = runTest {
-        val fact = FactEntity(id = "1", fact = "Fact 1", length = 10)
+        val fact = FactEntity(id = "1", fact = "Fact 1", length = 10, seen = 0)
         factDao.insertAll(listOf(fact))
 
         var item = factDao.getAllFacts().first()
@@ -65,6 +65,24 @@ class FactDaoTest {
         item = factDao.getAllFacts().first()
         advanceUntilIdle()
         assert(item.isEmpty())
+    }
+
+    @Test
+    fun testFactSeen() = runTest {
+        val fact = FactEntity(id = "1", fact = "Fact 1", length = 10, seen = 0)
+        factDao.insertAll(listOf(fact))
+
+        var item = factDao.getAllFacts().first()
+        advanceUntilIdle()
+        assert(item.size == 1)
+        assert(item[0].seen == 0)
+
+        factDao.markFactAsSeen("1")
+
+        item = factDao.getAllFacts().first()
+        advanceUntilIdle()
+        assert(item.size == 1)
+        assert(item[0].seen == 1)
     }
 
 }
