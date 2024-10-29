@@ -3,4 +3,5 @@
     <string name="no_fact_found_error">Facts not found</string>
     <string name="multiple_cat_message">Multiple cats!!</string>
     <string name="length_title">Length: %1$s</string>
+    <string name="cat_image_content_description">Image of a cat</string>
 </resources>

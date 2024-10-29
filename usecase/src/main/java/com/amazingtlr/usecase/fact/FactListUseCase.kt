@@ -29,6 +29,7 @@ class FactListUseCase(
                     is UseCaseResult.Success -> {
                         localFactRepository.insertAll(networkUseCaseResult.value.factList.map { factResponse ->
                             LocalFactResponse(
+                                id = factResponse.id,
                                 fact = factResponse.fact,
                                 length = factResponse.length
                             )

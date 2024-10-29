@@ -10,5 +10,5 @@ data class RetrofitFactResponse(
 )
 
 fun RetrofitFactResponse.toFactResponse(): FactResponse {
-    return FactResponse(fact, length)
+    return FactResponse(fact = fact, length = length)
 }

@@ -11,7 +11,18 @@ class RoomLocalFactRepository(private val factFactDao: FactDao) : LocalFactRepos
     }
 
     override suspend fun insertAll(facts: List<LocalFactResponse>) =
-        factFactDao.insertAll(facts.map { it.toFact() })
+        factFactDao.insertAll(facts.map { it.toFactEntity() })
 
     override suspend fun clearAll() = factFactDao.clearAll()
+
+    override suspend fun markFactAsSeen(factId: String) {
+        factFactDao.markFactAsSeen(factId)
+    }
+
+    override fun observeSeenFacts(): Flow<List<LocalFactResponse>> =
+        factFactDao.getAllSeenFacts().map {
+            it.map { fact ->
+                fact.toLocalFactResponse()
+            }
+        }
 }

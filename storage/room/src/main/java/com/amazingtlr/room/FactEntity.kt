@@ -3,21 +3,20 @@ package com.amazingtlr.room
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.amazingtlr.api.LocalFactResponse
-import kotlin.uuid.ExperimentalUuidApi
-import kotlin.uuid.Uuid
 
 @Entity(tableName = "facts")
 data class FactEntity(
     @PrimaryKey val id: String,
     val fact: String,
     val length: Int,
+    val seen: Int // 0 = unseen, 1 = seen - Boolean are not supported in ApiLevel < 30 by Room
 )
 
-@OptIn(ExperimentalUuidApi::class)
-fun LocalFactResponse.toFact(): FactEntity = FactEntity(
-    id = Uuid.random().toString(),
+fun LocalFactResponse.toFactEntity(): FactEntity = FactEntity(
+    id = id,
     fact = fact,
-    length = length
+    length = length,
+    seen = 0
 )
 
-fun FactEntity.toLocalFactResponse(): LocalFactResponse = LocalFactResponse(fact, length)
+fun FactEntity.toLocalFactResponse(): LocalFactResponse = LocalFactResponse(id, fact, length)
