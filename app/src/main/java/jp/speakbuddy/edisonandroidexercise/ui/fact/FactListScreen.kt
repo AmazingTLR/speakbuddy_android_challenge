@@ -7,12 +7,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.amazingTLR.opensample.common.screen.ErrorScreen
-import com.amazingTLR.opensample.common.screen.LoadingScreen
+import jp.speakbuddy.edisonandroidexercise.ui.common.screen.ErrorScreen
+import jp.speakbuddy.edisonandroidexercise.ui.common.screen.LoadingScreen
 import jp.speakbuddy.edisonandroidexercise.R
 import jp.speakbuddy.edisonandroidexercise.states.FactListState
-import jp.speakbuddy.edisonandroidexercise.ui.FactListSuccessScreen
-import jp.speakbuddy.edisonandroidexercise.ui.FactViewModel
 import jp.speakbuddy.edisonandroidexercise.ui.theme.EdisonAndroidExerciseTheme
 
 @Composable
@@ -29,8 +27,8 @@ fun FactListScreen(
             is FactListState.Success -> {
                 FactListSuccessScreen(
                     factList = factList.factList,
-                    onRequestForNextPage = {}, //TODO: Implement this
-                    hasMore = false, //TODO: Implement this
+                    onRequestForNextPage = viewModel::loadMoreFacts,
+                    hasMore = factList.hasMoreContent,
                     modifier = modifier
                 )
             }

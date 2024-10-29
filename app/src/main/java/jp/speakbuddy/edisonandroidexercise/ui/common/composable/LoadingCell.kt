@@ -1,4 +1,4 @@
-package jp.speakbuddy.edisonandroidexercise.ui
+package jp.speakbuddy.edisonandroidexercise.ui.common.composable
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth

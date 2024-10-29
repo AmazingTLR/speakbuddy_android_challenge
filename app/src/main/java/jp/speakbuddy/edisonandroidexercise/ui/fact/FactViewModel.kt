@@ -1,4 +1,4 @@
-package jp.speakbuddy.edisonandroidexercise.ui
+package jp.speakbuddy.edisonandroidexercise.ui.fact
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
@@ -21,6 +21,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.flow.updateAndGet
 import javax.inject.Inject
 
@@ -44,7 +45,10 @@ class FactViewModel @Inject constructor(private val factListUseCase: FactListUse
                         }
                     }
 
-                    FactListState.Success(factList)
+
+                    val hasMoreContent = factListResponse.currentPage < factListResponse.totalPages
+
+                    FactListState.Success(factList, hasMoreContent)
                 }
             }.stateIn(
                 scope = viewModelScope,
@@ -80,6 +84,12 @@ class FactViewModel @Inject constructor(private val factListUseCase: FactListUse
             started = SharingStarted.WhileSubscribed(),
             replay = 1
         )
+    }
+
+    fun loadMoreFacts() {
+        lastFactPageStateFlow.update {
+            it + 1
+        }
     }
 
     companion object {
