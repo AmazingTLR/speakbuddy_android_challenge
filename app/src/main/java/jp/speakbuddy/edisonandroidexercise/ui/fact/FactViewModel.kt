@@ -10,8 +10,8 @@ import com.amazingtlr.usecase.fact.FactListUseCase
 import com.amazingtlr.usecase.fact.MarkFactAsSeenUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jp.speakbuddy.edisonandroidexercise.model.FactUI
-import jp.speakbuddy.edisonandroidexercise.model.toFactUI
 import jp.speakbuddy.edisonandroidexercise.states.FactListState
+import jp.speakbuddy.edisonandroidexercise.ui.FactUITransformer
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -34,7 +34,8 @@ import javax.inject.Inject
 class FactViewModel @Inject constructor(
     private val factListUseCase: FactListUseCase,
     private val markFactAsSeenUseCase: MarkFactAsSeenUseCase,
-    private val clearFactUseCase: ClearFactListUseCase
+    private val clearFactUseCase: ClearFactListUseCase,
+    private val factUITransformer: FactUITransformer
 ) : ViewModel() {
     private val lastFactPageStateFlow = MutableStateFlow(1)
     private val mutableFactListStateFlow: MutableStateFlow<List<FactUI>> =
@@ -55,7 +56,7 @@ class FactViewModel @Inject constructor(
                     FactListState.Error
                 } else {
                     val factList = mutableFactListStateFlow.updateAndGet {
-                        (it + factListResponse.factList.map { it.toFactUI() }).distinctBy { it.id }
+                        (it + factListResponse.factList.map { factUITransformer(it) }).distinctBy { it.id }
                     }
 
                     val hasMoreContent = factListResponse.currentPage < factListResponse.totalPages

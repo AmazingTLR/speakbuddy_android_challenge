@@ -8,8 +8,8 @@ import com.amazingtlr.usecase.UseCaseResult
 import com.amazingtlr.usecase.fact.HistoryFactListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jp.speakbuddy.edisonandroidexercise.model.FactUI
-import jp.speakbuddy.edisonandroidexercise.model.toFactUI
 import jp.speakbuddy.edisonandroidexercise.states.HistoryFactListState
+import jp.speakbuddy.edisonandroidexercise.ui.FactUITransformer
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -24,7 +24,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HistoryFactViewModel @Inject constructor(
-    private val historyFactListUseCase: HistoryFactListUseCase
+    private val historyFactListUseCase: HistoryFactListUseCase,
+    private val factUITransformer: FactUITransformer
 ) : ViewModel() {
     private val mutableFactListStateFlow: MutableStateFlow<List<FactUI>> =
         MutableStateFlow(emptyList())
@@ -36,7 +37,7 @@ class HistoryFactViewModel @Inject constructor(
                     HistoryFactListState.Error
                 } else {
                     val factList = mutableFactListStateFlow.updateAndGet {
-                        (it + historyFactList.map { it.toFactUI() }).distinctBy { it.id }
+                        (it + historyFactList.map { factUITransformer(it) }).distinctBy { it.id }
                     }
 
                     HistoryFactListState.Success(factList)

@@ -21,6 +21,7 @@ class HistoryFactViewModelTest {
     private val mockHistoryFactListUseCase: HistoryFactListUseCase = mockk {
         coEvery { this@mockk() } returns flowOf(UseCaseResult.Success(fakeFactListResponse1))
     }
+    private val mockFactUITransformer: FactUITransformer = mockk(relaxed = true)
 
     private lateinit var sut: HistoryFactViewModel
 
@@ -28,6 +29,7 @@ class HistoryFactViewModelTest {
     fun setup() {
         sut = HistoryFactViewModel(
             historyFactListUseCase = mockHistoryFactListUseCase,
+            factUITransformer = mockFactUITransformer
         )
     }
 

@@ -11,6 +11,7 @@ import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockk
+import jp.speakbuddy.edisonandroidexercise.model.FactUI
 import jp.speakbuddy.edisonandroidexercise.states.FactListState
 import jp.speakbuddy.edisonandroidexercise.ui.fact.FactViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -34,6 +35,10 @@ class FactViewModelTest {
         coEvery { this@mockk.invoke(any()) } returns Unit
     }
     private val mockClearFactListUseCase: ClearFactListUseCase = mockk(relaxed = true)
+    private val mockFactUITransformer: FactUITransformer = mockk {
+        every { this@mockk.invoke(fakeFactListResponse1.factList[0]) } returns fakeFactUI1
+        every { this@mockk.invoke(fakeFactListResponse2.factList[0]) } returns fakeFactUI2
+    }
 
     private lateinit var sut: FactViewModel
 
@@ -43,6 +48,7 @@ class FactViewModelTest {
             factListUseCase = mockFactListUseCase,
             markFactAsSeenUseCase = mockMarkFactAsSeenUseCase,
             clearFactUseCase = mockClearFactListUseCase,
+            factUITransformer = mockFactUITransformer
         )
     }
 
@@ -105,6 +111,14 @@ class FactViewModelTest {
             totalPages = 2
         )
 
+        val fakeFactUI1 = FactUI(
+            id = "1",
+            fact = "Fact 1",
+            length = 6,
+            shouldDisplayLength = false,
+            multipleCats = false
+        )
+
         val fakeFactListResponse2 = FactListResponse(
             factList = listOf(
                 FactResponse(
@@ -115,6 +129,14 @@ class FactViewModelTest {
             ),
             currentPage = 2,
             totalPages = 2
+        )
+
+        val fakeFactUI2 = FactUI(
+            id = "2",
+            fact = "Fact 2",
+            length = 6,
+            shouldDisplayLength = false,
+            multipleCats = false
         )
     }
 }
