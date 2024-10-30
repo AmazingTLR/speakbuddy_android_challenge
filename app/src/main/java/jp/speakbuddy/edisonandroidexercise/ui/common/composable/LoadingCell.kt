@@ -7,14 +7,14 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import jp.speakbuddy.edisonandroidexercise.ui.theme.EdisonTheme
 
 @Composable
 fun LoadingCell(modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .padding(16.dp),
+            .padding(EdisonTheme.dimensions.L),
         contentAlignment = Alignment.Center
     ) {
         CircularProgressIndicator()

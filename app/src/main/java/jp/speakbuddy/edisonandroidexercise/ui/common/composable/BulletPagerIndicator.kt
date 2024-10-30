@@ -18,8 +18,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
+import jp.speakbuddy.edisonandroidexercise.ui.theme.EdisonTheme
 
 @Composable
 fun BulletPagerIndicator(
@@ -31,26 +30,28 @@ fun BulletPagerIndicator(
         modifier = modifier
             .wrapContentHeight()
             .fillMaxWidth()
-            .padding(bottom = 32.dp),
+            .padding(bottom = EdisonTheme.dimensions.XL),
         verticalAlignment = Alignment.Bottom,
         horizontalArrangement = Arrangement.Center
     ) {
         repeat(numberOfPagerBullets) { iteration ->
-            var colorOfBullet by remember { mutableStateOf(Color.LightGray) }
+            val neutralColor = EdisonTheme.colors.background.default
+            val selectedColor = EdisonTheme.colors.background.accent
+            var currentColorOfBullet by remember { mutableStateOf(neutralColor) }
 
             LaunchedEffect(currentPage) {
                 // We only display 4 bullets at a time
                 // Mod the current page by 4 to get the position of the current page in the iteration
                 val currentPageIsInIteration = currentPage.mod(numberOfPagerBullets) == iteration
-                colorOfBullet = if (currentPageIsInIteration) Color.DarkGray else Color.LightGray
+                currentColorOfBullet = if (currentPageIsInIteration) selectedColor else neutralColor
             }
 
             Box(
                 modifier = Modifier
-                    .padding(2.dp)
+                    .padding(EdisonTheme.dimensions.XS)
                     .clip(CircleShape)
-                    .background(colorOfBullet)
-                    .size(16.dp)
+                    .background(currentColorOfBullet)
+                    .size(EdisonTheme.dimensions.L)
             )
         }
     }

@@ -5,16 +5,15 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import jp.speakbuddy.edisonandroidexercise.R
 import jp.speakbuddy.edisonandroidexercise.model.FactUI
+import jp.speakbuddy.edisonandroidexercise.ui.theme.EdisonTheme
 
 @Composable
 fun FactListSuccessScreen(
@@ -29,13 +28,14 @@ fun FactListSuccessScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = onNavigateToFactHistoryList,
-                containerColor = MaterialTheme.colorScheme.primary,
+                containerColor = EdisonTheme.colors.background.default,
                 shape = CircleShape,
-                elevation = FloatingActionButtonDefaults.elevation(8.dp)
+                elevation = FloatingActionButtonDefaults.elevation(EdisonTheme.dimensions.M)
             ) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_history),
                     contentDescription = stringResource(id = R.string.cat_history_content_description),
+                    tint = EdisonTheme.colors.text.default
                 )
             }
         }, content = { scaffoldPadding ->

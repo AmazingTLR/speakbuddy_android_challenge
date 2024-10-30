@@ -19,10 +19,26 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import jp.speakbuddy.edisonandroidexercise.model.FactUI
 import jp.speakbuddy.edisonandroidexercise.ui.common.composable.BulletPagerIndicator
+import jp.speakbuddy.edisonandroidexercise.ui.theme.EdisonColor
 
 //TODO : Update colors to better match the design
 private val colorList =
-    listOf(Color.Red, Color.Blue, Color.Green, Color.Yellow, Color.Magenta, Color.Cyan)
+    listOf(
+        EdisonColor.Teal,
+        EdisonColor.Orange,
+        EdisonColor.Acid,
+        EdisonColor.Green,
+        EdisonColor.Carrot,
+        EdisonColor.Red,
+        EdisonColor.Lava,
+        EdisonColor.Flame,
+        EdisonColor.Pink,
+        EdisonColor.Magenta,
+        EdisonColor.Indigo,
+        EdisonColor.Blue,
+        EdisonColor.Jellyfish,
+        EdisonColor.Algae,
+    )
 
 private const val numberOfPagerBullets = 4
 
@@ -37,7 +53,7 @@ fun FactHorizontalPager(
     val pagerState = rememberPagerState(pageCount = {
         factList.size
     })
-    var randomColor by remember { mutableStateOf(Color.Red) }
+    var randomColor by remember { mutableStateOf(colorList.first()) }
 
     // Monitor page changes and load more items if needed
     LaunchedEffect(pagerState.currentPage) {
