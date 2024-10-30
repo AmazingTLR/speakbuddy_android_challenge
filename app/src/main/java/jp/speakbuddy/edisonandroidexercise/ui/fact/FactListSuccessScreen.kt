@@ -1,6 +1,6 @@
 package jp.speakbuddy.edisonandroidexercise.ui.fact
 
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.FloatingActionButtonDefaults
@@ -38,15 +38,16 @@ fun FactListSuccessScreen(
                     contentDescription = stringResource(id = R.string.cat_history_content_description),
                 )
             }
-        }) { paddingValues ->
-        FactHorizontalPager(
-            factList = factList,
-            onRequestForNextPage = onRequestForNextPage,
-            hasMore = hasMore,
-            onFactSeen = onFactSeen,
-            modifier = modifier.padding(paddingValues)
-        )
-    }
+        }, content = { scaffoldPadding ->
+            FactHorizontalPager(
+                factList = factList,
+                onRequestForNextPage = onRequestForNextPage,
+                hasMore = hasMore,
+                onFactSeen = onFactSeen,
+                modifier = modifier
+                    .consumeWindowInsets(scaffoldPadding) //Needed for having a proper edge-to-edge UX
+            )
+        })
 }
 
 @Composable

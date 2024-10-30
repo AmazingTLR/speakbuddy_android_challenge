@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.HorizontalDivider
@@ -23,7 +24,7 @@ fun HistoryFactListSuccessScreen(
     factList: List<FactUI>,
     modifier: Modifier = Modifier
 ) {
-    Column {
+    Column(modifier = modifier.systemBarsPadding()) {
         Text(
             text = stringResource(id = R.string.history_title),
             style = MaterialTheme.typography.titleLarge.copy(fontWeight = FontWeight.Bold),
