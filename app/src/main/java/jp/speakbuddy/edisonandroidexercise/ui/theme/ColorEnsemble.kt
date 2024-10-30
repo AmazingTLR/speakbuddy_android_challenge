@@ -16,8 +16,8 @@ data class ColorComposition(
 val LocalColors = staticCompositionLocalOf {
     ColorEnsemble(
         background = ColorComposition(
-            default = EdisonColor.Neutral100,
-            accent = EdisonColor.Neutral150
+            default = EdisonColor.Neutral000,
+            accent = EdisonColor.Neutral200
         ),
         text = ColorComposition(
             default = EdisonColor.Neutral200,
@@ -27,23 +27,22 @@ val LocalColors = staticCompositionLocalOf {
 }
 
 object EdisonColor {
-    val Neutral100 = Color(0xFFCCCCCC)
-    val Neutral150 = Color(0xFF444444)
-    val Neutral200 = Color(0xFF000000)
+    val Neutral000 = Color(0xFFFFFFFF)
+    val Neutral200 = Color(0xFF3A393D)
 
 
-    val Teal = Color(0xFF89E3DD)
-    val Orange = Color(0xFFE85E38)
-    val Acid = Color(0xFFE5E857)
-    val Green = Color(0xFF43A047)
-    val Carrot = Color(0xFFDA7726)
-    val Red = Color(0xFFE53935)
-    val Lava = Color(0xFFEF3841)
-    val Flame = Color(0xFFFFCE52)
-    val Pink = Color(0xFFE64796)
-    val Magenta = Color(0xFFD449D4)
-    val Indigo = Color(0xFF6849FF)
-    val Blue = Color(0xFF4773EB)
-    val Jellyfish = Color(0xFF30E0C6)
-    val Algae = Color(0xFF74E788)
+    val color_background_1 = Color(0xFFD0ECFC)
+    val color_background_2 = Color(0xFFFBF0DC)
+    val color_background_3 = Color(0xFFF9CFCF)
+    val color_background_4 = Color(0xFFDCF9E4)
+    val color_background_5 = Color(0xFFF9D1B7)
+    val color_background_6 = Color(0xFFC9F2F7)
+    val color_background_7 = Color(0xFFF2C6DF)
+    val color_background_8 = Color(0xFFDBCDF0)
+    val color_background_9 = Color(0xFFB6D2FF)
+    val color_background_10 = Color(0xFFFBFAC8)
+    val color_background_11 = Color(0xFFF4D8B0)
+    val color_background_12 = Color(0xFFE8B4B1)
+    val color_background_13 = Color(0xFFD6EADF)
+    val color_background_14 = Color(0xFFB8E0D2)
 }

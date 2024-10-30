@@ -9,7 +9,10 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -17,15 +20,25 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import jp.speakbuddy.edisonandroidexercise.R
 import jp.speakbuddy.edisonandroidexercise.model.FactUI
-import jp.speakbuddy.edisonandroidexercise.ui.common.composable.CircularImage
+import jp.speakbuddy.edisonandroidexercise.ui.common.composable.CatImage
 import jp.speakbuddy.edisonandroidexercise.ui.common.composable.DynamicTextField
 import jp.speakbuddy.edisonandroidexercise.ui.theme.EdisonTheme
+
+private val catImageList = listOf(
+    R.drawable.cat_1,
+    R.drawable.cat_2,
+    R.drawable.cat_3,
+    R.drawable.cat_4,
+    R.drawable.cat_5
+)
 
 @Composable
 fun CatCardFact(
     factUI: FactUI,
     modifier: Modifier = Modifier
 ) {
+    val randomCatImage by remember { mutableIntStateOf(catImageList.random()) }
+
     Card(
         modifier = modifier
             .fillMaxWidth()
@@ -46,9 +59,9 @@ fun CatCardFact(
         ) {
             val fact = remember { factUI }
 
-            CircularImage(
-                url = "https://icons.iconarchive.com/icons/iconarchive/cute-animal/512/Cute-Cat-icon.png",
-                size = 100.dp,
+            CatImage(
+                drawable = randomCatImage,
+                size = 150.dp,
             )
 
             DynamicTextField(
@@ -82,6 +95,7 @@ fun CatFactCardPreview() {
             length = 110,
             multipleCats = true,
             shouldDisplayLength = true
-        )
+        ),
+//        catImage = R.drawable.cat_1
     )
 }

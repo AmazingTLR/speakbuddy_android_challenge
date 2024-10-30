@@ -15,30 +15,27 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import jp.speakbuddy.edisonandroidexercise.model.FactUI
 import jp.speakbuddy.edisonandroidexercise.ui.common.composable.BulletPagerIndicator
 import jp.speakbuddy.edisonandroidexercise.ui.theme.EdisonColor
 
-//TODO : Update colors to better match the design
-private val colorList =
-    listOf(
-        EdisonColor.Teal,
-        EdisonColor.Orange,
-        EdisonColor.Acid,
-        EdisonColor.Green,
-        EdisonColor.Carrot,
-        EdisonColor.Red,
-        EdisonColor.Lava,
-        EdisonColor.Flame,
-        EdisonColor.Pink,
-        EdisonColor.Magenta,
-        EdisonColor.Indigo,
-        EdisonColor.Blue,
-        EdisonColor.Jellyfish,
-        EdisonColor.Algae,
-    )
+private val colorList = listOf(
+    EdisonColor.color_background_1,
+    EdisonColor.color_background_2,
+    EdisonColor.color_background_3,
+    EdisonColor.color_background_4,
+    EdisonColor.color_background_5,
+    EdisonColor.color_background_6,
+    EdisonColor.color_background_7,
+    EdisonColor.color_background_8,
+    EdisonColor.color_background_9,
+    EdisonColor.color_background_10,
+    EdisonColor.color_background_11,
+    EdisonColor.color_background_12,
+    EdisonColor.color_background_13,
+    EdisonColor.color_background_14
+)
 
 private const val numberOfPagerBullets = 4
 
@@ -71,7 +68,7 @@ fun FactHorizontalPager(
     val backgroundColor by animateColorAsState(
         targetValue = randomColor,
         animationSpec = tween(durationMillis = 1000),
-        label = ""
+        label = "backgroundColorLabel"
     )
     Box {
         HorizontalPager(
