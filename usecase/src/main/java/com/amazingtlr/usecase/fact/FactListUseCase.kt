@@ -43,6 +43,7 @@ class FactListUseCase(
                                 FactListResponse(
                                     factList = localFactResponseList.map { localFactResponse ->
                                         FactResponse(
+                                            id = localFactResponse.id,
                                             fact = localFactResponse.fact,
                                             length = localFactResponse.length
                                         )
