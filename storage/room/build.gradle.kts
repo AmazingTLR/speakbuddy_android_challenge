@@ -30,13 +30,13 @@ dependencies {
     // Room
     implementation(libs.room.runtime)
     implementation(libs.core.ktx)
-    implementation(libs.androidx.junit.ktx)
     ksp(libs.room.compiler)
     implementation(libs.room.ktx)
 
     // Test
     testImplementation(libs.mockk)
     testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.androidx.junit.ktx)
     androidTestImplementation(libs.junit)
     androidTestImplementation(libs.kotlinx.coroutines.test)
     androidTestImplementation(libs.androidx.junit)

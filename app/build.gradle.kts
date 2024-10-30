@@ -88,6 +88,9 @@ dependencies {
     //Testing
     testImplementation(libs.junit)
     testImplementation(libs.mockk)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.turbine)
+    testImplementation(libs.androidx.junit.ktx)
 
     // Internal libs
     implementation(project(":network:retrofit"))

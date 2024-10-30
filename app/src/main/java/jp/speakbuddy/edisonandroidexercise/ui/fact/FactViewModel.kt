@@ -42,8 +42,8 @@ class FactViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            withContext(Dispatchers.IO){
-                clearFactUseCase.invoke()
+            withContext(Dispatchers.IO) {
+                clearFactUseCase()
             }
         }
     }
@@ -57,7 +57,6 @@ class FactViewModel @Inject constructor(
                     val factList = mutableFactListStateFlow.updateAndGet {
                         (it + factListResponse.factList.map { it.toFactUI() }).distinctBy { it.id }
                     }
-
 
                     val hasMoreContent = factListResponse.currentPage < factListResponse.totalPages
 
