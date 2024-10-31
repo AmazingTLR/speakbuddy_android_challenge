@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cat_image_content_description">Image of a cat</string>
+    <string name="cat_history_content_description">View your cat facts history</string>
+</resources>

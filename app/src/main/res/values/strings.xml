@@ -4,7 +4,4 @@
     <string name="multiple_cat_message">Multiple cats!!</string>
     <string name="length_title">Length: %1$s</string>
     <string name="history_title">Your history of cat facts</string>
-
-    <string name="cat_image_content_description">Image of a cat</string>
-    <string name="cat_history_content_description">View your cat facts history</string>
 </resources>

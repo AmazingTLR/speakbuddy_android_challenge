@@ -92,6 +92,9 @@ dependencies {
     testImplementation(libs.turbine)
     testImplementation(libs.androidx.junit.ktx)
 
+    androidTestImplementation(libs.ui.test.junit4)
+    debugImplementation(libs.androidx.ui.test.manifest)
+
     // Internal libs
     implementation(project(":network:retrofit"))
     implementation(project(":usecase"))

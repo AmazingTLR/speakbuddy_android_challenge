@@ -8,10 +8,14 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTag
 import androidx.compose.ui.tooling.preview.Preview
 import jp.speakbuddy.edisonandroidexercise.R
+import jp.speakbuddy.edisonandroidexercise.TestTags
 import jp.speakbuddy.edisonandroidexercise.model.FactUI
 import jp.speakbuddy.edisonandroidexercise.ui.theme.EdisonTheme
 
@@ -30,7 +34,10 @@ fun FactListSuccessScreen(
                 onClick = onNavigateToFactHistoryList,
                 containerColor = EdisonTheme.colors.background.default,
                 shape = CircleShape,
-                elevation = FloatingActionButtonDefaults.elevation(EdisonTheme.dimensions.M)
+                elevation = FloatingActionButtonDefaults.elevation(EdisonTheme.dimensions.M),
+                modifier = modifier.semantics {
+                    testTag = TestTags.factListScreenFab
+                }
             ) {
                 Icon(
                     painter = painterResource(id = R.drawable.ic_history),
