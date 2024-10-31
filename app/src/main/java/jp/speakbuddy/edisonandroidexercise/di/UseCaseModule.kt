@@ -4,9 +4,8 @@ import com.amazingtlr.api.FactRepository
 import com.amazingtlr.api.LocalFactRepository
 import com.amazingtlr.usecase.fact.ClearFactListUseCase
 import com.amazingtlr.usecase.fact.FactListUseCase
-import com.amazingtlr.usecase.fact.FactUseCase
-import com.amazingtlr.usecase.fact.MarkFactAsSeenUseCase
 import com.amazingtlr.usecase.fact.HistoryFactListUseCase
+import com.amazingtlr.usecase.fact.MarkFactAsSeenUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,12 +15,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class UseCaseModule {
-    @Provides
-    @Singleton
-    fun provideFactUseCase(factRepository: FactRepository): FactUseCase {
-        return FactUseCase(factRepository)
-    }
-
     @Provides
     @Singleton
     fun provideFactListUseCase(
