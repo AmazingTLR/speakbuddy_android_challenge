@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Edison Android Exercise</string>
+    <string name="no_fact_found_error">Facts not found</string>
+    <string name="multiple_cat_message">Multiple cats!!</string>
+    <string name="length_title">Length: %1$s</string>
+    <string name="history_title">Your history of cat facts</string>
 </resources>
